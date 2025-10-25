@@ -165,3 +165,44 @@
     padding: var(--spacing-sm);
   }
 }
+/* MainFeed.module.css에 추가할 스타일 */
+
+/* 에러 컨테이너 */
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  text-align: center;
+  min-height: 400px;
+}
+
+.errorMessage {
+  color: var(--color-disagree);
+  font-size: 1rem;
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+.retryButton {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--color-agree);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.retryButton:hover {
+  background: var(--color-agree-dark, #9b6e47);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.retryButton:active {
+  transform: translateY(0);
+}
