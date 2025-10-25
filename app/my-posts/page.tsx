@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from './page.module.css';
+import styles from './my-posts.module.css';
 import PostCard from '@/components/PostCard';
 import ProfileDropdown from '@/components/ProfileDropdown';
 import { useAuth } from '@/lib/hooks/useAuth';

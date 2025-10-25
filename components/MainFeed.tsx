@@ -1,3 +1,4 @@
+// components/MainFeed.tsx - Supabase 연결 버전
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -66,73 +67,16 @@ export default function MainFeed() {
 
   // 철학 테스트를 완료하지 않은 경우 테스트 페이지로 리다이렉트
   useEffect(() => {
-    if (user && !philosophyResult && !authLoading && !error) {
-      // 에러가 있으면 리다이렉트하지 않음 (에러 메시지를 보여줘야 함)
-      const timer = setTimeout(() => {
-        router.push('/');
-      }, 100);
-      return () => clearTimeout(timer);
+    if (user && !philosophyResult && !authLoading) {
+      router.push('/');
     }
-  }, [user, philosophyResult, authLoading, error, router]);
+  }, [user, philosophyResult, authLoading, router]);
 
-  // 로딩 상태
-  if (authLoading) {
+  if (authLoading || !user || !philosophyResult) {
     return (
       <div className={styles.loadingContainer}>
         <div className={styles.loadingSpinner}></div>
-        <p>인증 확인 중...</p>
-      </div>
-    );
-  }
-
-  // 사용자 없음 (리다이렉트 중)
-  if (!user) {
-    return (
-      <div className={styles.loadingContainer}>
-        <div className={styles.loadingSpinner}></div>
-        <p>로그인 페이지로 이동 중...</p>
-      </div>
-    );
-  }
-
-  // 에러 상태
-  if (error) {
-    return (
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <div className={styles.headerContent}>
-            <div className={styles.headerTop}>
-              <div className={styles.headerLeft}>
-                <h1 className={styles.title}>일상속의 철학자들</h1>
-                <p className={styles.subtitle}>온라인에서도 대화는 가능하다</p>
-              </div>
-              <div className={styles.headerRight}>
-                <ProfileDropdown />
-              </div>
-            </div>
-          </div>
-        </header>
-        <main className={styles.main}>
-          <div className={styles.errorContainer}>
-            <p className={styles.errorMessage}>{error}</p>
-            <button 
-              onClick={() => router.push('/')}
-              className={styles.retryButton}
-            >
-              철학 테스트 다시 하기
-            </button>
-          </div>
-        </main>
-      </div>
-    );
-  }
-
-  // 철학 결과 없음 (리다이렉트 중)
-  if (!philosophyResult) {
-    return (
-      <div className={styles.loadingContainer}>
-        <div className={styles.loadingSpinner}></div>
-        <p>철학 테스트 페이지로 이동 중...</p>
+        <p>불러오는 중...</p>
       </div>
     );
   }
@@ -167,31 +111,32 @@ export default function MainFeed() {
         />
 
         <div className={styles.feedContainer}>
+          {error && (
+            <div className={styles.errorState}>
+              <p>{error}</p>
+            </div>
+          )}
+          
+          {postsError && (
+            <div className={styles.errorState}>
+              <p>게시글을 불러오는데 실패했습니다.</p>
+              <button onClick={() => window.location.reload()}>다시 시도</button>
+            </div>
+          )}
+
           {loading ? (
             <div className={styles.loadingContainer}>
               <div className={styles.loadingSpinner}></div>
               <p>철학자들의 생각을 불러오는 중...</p>
             </div>
-          ) : postsError ? (
-            <div className={styles.errorContainer}>
-              <p className={styles.errorMessage}>
-                게시글을 불러오는데 실패했습니다.
-              </p>
-              <button 
-                onClick={() => window.location.reload()}
-                className={styles.retryButton}
-              >
-                다시 시도
-              </button>
-            </div>
-          ) : !posts || posts.length === 0 ? (
+          ) : posts && posts.length === 0 ? (
             <div className={styles.emptyState}>
               <p>아직 작성된 글이 없습니다.</p>
               <p>첫 번째 철학자가 되어보세요.</p>
             </div>
           ) : (
             <div className={styles.postList}>
-              {posts.map((post: Post) => (
+              {posts?.map((post: Post) => (
                 <PostCard 
                   key={post.id} 
                   post={post}
