@@ -1,0 +1,5 @@
+/* /app/feed/Feed.module.css - Feed 페이지 전용 스타일 */
+.container {
+  min-height: 100vh;
+  background: var(--bg-main);
+}

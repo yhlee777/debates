@@ -1,0 +1,439 @@
+/* 일상속의 철학자들 - 편안한 UI 디자인 시스템 */
+
+/* ===========================
+   1. CSS 변수 정의 - 편안한 색상 팔레트
+   =========================== */
+:root {
+  /* 배경색 - 따뜻하고 편안한 톤 */
+  --bg-main: #FAFAF8;        /* 따뜻한 오프화이트 */
+  --bg-card: #FFFFFF;        /* 순백색 카드 */
+  --bg-accent: #F5F5F0;      /* 베이지톤 그레이 */
+  --bg-hover: #F0F0E8;       /* 호버시 약간 더 진한 베이지 */
+  
+  /* 텍스트 색상 - 부드러운 대비 */
+  --text-title: #2C2C2C;     /* 진한 차콜 (검정 피함) */
+  --text-body: #4A4A4A;      /* 부드러운 그레이 */
+  --text-muted: #7A7A7A;     /* 연한 그레이 */
+  --text-placeholder: #9A9A9A; /* 플레이스홀더용 */
+  
+  /* 강조색 - 차분하고 중립적 */
+  --color-agree: #6B9BD1;     /* 차분한 하늘색 */
+  --color-disagree: #E8B88B;  /* 부드러운 살구색 */
+  --color-neutral: #B8B8B8;   /* 중성 그레이 */
+  --color-border: #E8E8E8;    /* 연한 테두리 */
+  
+  /* 간격과 크기 */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 64px;
+  
+  /* 모서리 둥글기 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  /* 그림자 - 은은하게 */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.1);
+  
+  /* 애니메이션 */
+  --transition-base: 300ms ease-out;
+  --transition-fast: 150ms ease-out;
+  --transition-slow: 500ms ease-out;
+}
+
+/* ===========================
+   2. 기본 리셋 및 타이포그래피
+   =========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Noto Sans KR', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-body);
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  min-height: 100vh;
+  transition: background-color var(--transition-slow);
+}
+
+/* 제목 스타일 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+  color: var(--text-title);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: var(--spacing-md);
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+/* 본문 스타일 */
+p {
+  margin-bottom: var(--spacing-md);
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* ===========================
+   3. 컨테이너 및 레이아웃
+   =========================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.container-narrow {
+  max-width: 680px; /* 읽기 최적 너비 */
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-2xl);
+}
+
+/* ===========================
+   4. 카드 컴포넌트
+   =========================== */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.card-body {
+  color: var(--text-body);
+}
+
+.card-footer {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===========================
+   5. 버튼 스타일
+   =========================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: 44px; /* 모바일 터치 영역 */
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* 동의 버튼 */
+.btn-agree {
+  background: linear-gradient(135deg, var(--color-agree), #5A8AC0);
+  color: white;
+}
+
+.btn-agree:hover {
+  opacity: 0.9;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-agree.active {
+  background: var(--color-agree);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 다른의견 버튼 */
+.btn-disagree {
+  background: linear-gradient(135deg, var(--color-disagree), #D7A77A);
+  color: white;
+}
+
+.btn-disagree:hover {
+  opacity: 0.9;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-disagree.active {
+  background: var(--color-disagree);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 기본 버튼 */
+.btn-default {
+  background: var(--bg-accent);
+  color: var(--text-body);
+}
+
+.btn-default:hover {
+  background: var(--bg-hover);
+}
+
+/* ===========================
+   6. 폼 요소
+   =========================== */
+.input, .textarea {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--bg-card);
+  transition: all var(--transition-fast);
+  line-height: 1.6;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--color-agree);
+  box-shadow: 0 0 0 3px rgba(107, 155, 209, 0.1);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-title);
+  font-weight: 500;
+}
+
+/* ===========================
+   7. 철학자 유형 배지
+   =========================== */
+.philosopher-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  background: var(--bg-accent);
+  color: var(--text-muted);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+/* ===========================
+   8. 통계 표시
+   =========================== */
+.stats-container {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-accent);
+  border-radius: var(--radius-md);
+  margin-top: var(--spacing-md);
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-title);
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* ===========================
+   9. 로딩 상태
+   =========================== */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-accent) 25%,
+    var(--bg-hover) 50%,
+    var(--bg-accent) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-text {
+  height: 1em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.skeleton-title {
+  height: 1.5em;
+  width: 60%;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ===========================
+   10. 모바일 반응형
+   =========================== */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .card {
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+  }
+  
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .stats-container {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
+
+/* ===========================
+   11. 접근성 개선
+   =========================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--color-agree);
+  outline-offset: 2px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===========================
+   12. 토스트 알림
+   =========================== */
+.toast {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-card);
+  color: var(--text-body);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+  z-index: 1000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast-success {
+  border-left: 4px solid var(--color-agree);
+}
+
+.toast-error {
+  border-left: 4px solid var(--color-disagree);
+}

@@ -1,0 +1,381 @@
+/* /app/post/[id]/post.module.css */
+.container {
+  min-height: 100vh;
+  background: var(--bg-main);
+}
+
+.header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.headerContent {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--text-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.backButton:hover {
+  background: var(--bg-accent);
+  border-color: var(--color-agree);
+  color: var(--color-agree);
+}
+
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.article {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.articleHeader {
+  padding: var(--spacing-2xl);
+  background: linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-card) 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--text-title);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.02em;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.authorType {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-agree);
+}
+
+.authorPhilosopher {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.time {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.content {
+  padding: var(--spacing-2xl);
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: var(--text-body);
+}
+
+.content p {
+  margin-bottom: var(--spacing-lg);
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+.reactions {
+  padding: var(--spacing-2xl);
+  background: var(--bg-accent);
+  border-top: 1px solid var(--color-border);
+}
+
+.reactionButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.reactionButton {
+  background: var(--bg-card);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.reactionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.agreeButton:hover {
+  border-color: var(--color-agree);
+  background: rgba(107, 155, 209, 0.05);
+}
+
+.agreeButton.active {
+  border-color: var(--color-agree);
+  background: rgba(107, 155, 209, 0.1);
+}
+
+.disagreeButton:hover {
+  border-color: var(--color-disagree);
+  background: rgba(232, 184, 139, 0.05);
+}
+
+.disagreeButton.active {
+  border-color: var(--color-disagree);
+  background: rgba(232, 184, 139, 0.1);
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.buttonContent svg {
+  flex-shrink: 0;
+}
+
+.agreeButton svg {
+  color: var(--color-agree);
+}
+
+.disagreeButton svg {
+  color: var(--color-disagree);
+}
+
+.buttonText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+}
+
+.buttonLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-title);
+}
+
+.buttonDescription {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.count {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-title);
+}
+
+.agreeButton.active .count {
+  color: var(--color-agree);
+}
+
+.disagreeButton.active .count {
+  color: var(--color-disagree);
+}
+
+.distribution {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+}
+
+.distributionTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-title);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.distributionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.distributionColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.columnTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-body);
+  margin: 0;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.philosopherList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.philosopherItem {
+  display: grid;
+  grid-template-columns: 120px 1fr 40px;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.philosopherType {
+  font-size: 0.8125rem;
+  color: var(--text-body);
+  font-weight: 500;
+}
+
+.barContainer {
+  width: 100%;
+  height: 20px;
+  background: var(--bg-accent);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-base);
+}
+
+.philosopherCount {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-body);
+  text-align: right;
+}
+
+.userContext {
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, rgba(107, 155, 209, 0.05), rgba(107, 155, 209, 0.02));
+  border-left: 4px solid var(--color-agree);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.userContextText {
+  font-size: 0.9375rem;
+  color: var(--text-body);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.userContextText strong {
+  color: var(--color-agree);
+  font-weight: 600;
+}
+
+.loadingContainer,
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: var(--spacing-lg);
+  color: var(--text-muted);
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-agree);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .headerContent {
+    padding: var(--spacing-sm);
+  }
+
+  .main {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .articleHeader,
+  .content,
+  .reactions {
+    padding: var(--spacing-lg);
+  }
+
+  .content {
+    font-size: 1rem;
+  }
+
+  .reactionButtons {
+    grid-template-columns: 1fr;
+  }
+
+  .distributionGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .philosopherItem {
+    grid-template-columns: 100px 1fr 35px;
+  }
+
+  .backButton {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}

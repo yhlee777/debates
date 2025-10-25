@@ -1,0 +1,167 @@
+/* /components/MainFeed.module.css */
+.container {
+  min-height: 100vh;
+  background: var(--bg-main);
+}
+
+.header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.headerContent {
+  max-width: 85%;  /* 화면의 85% 사용 */
+  margin: 0 auto;
+  padding: var(--spacing-md) var(--spacing-md);  /* 패딩 줄임 */
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-sm);
+}
+
+.headerLeft {
+  text-align: left;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.5rem;  /* 제목 크기 줄임 */
+  font-weight: 600;
+  color: var(--text-title);
+  margin-bottom: 0.125rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.875rem;  /* 부제목 크기 줄임 */
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.userInfo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: var(--bg-accent);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  margin-top: var(--spacing-sm);
+}
+
+.userType {
+  font-size: 0.875rem;
+  color: var(--color-agree);
+  font-weight: 600;
+}
+
+.userPhilosopher {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  position: relative;
+  padding-left: var(--spacing-md);
+}
+
+.userPhilosopher::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-neutral);
+}
+
+.main {
+  max-width: 85%;  /* 화면의 85% 사용 */
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.feedContainer {
+  margin-top: var(--spacing-sm);
+  width: 100%;
+}
+
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;  /* 카드 간격 최소화 */
+  width: 100%;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: var(--spacing-md);
+  color: var(--text-muted);
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-agree);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--text-muted);
+}
+
+.emptyState p {
+  margin: var(--spacing-xs) 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Tablet responsive */
+@media (max-width: 1280px) {
+  .main {
+    max-width: 90%;
+  }
+
+  .headerContent {
+    max-width: 90%;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .headerContent {
+    max-width: 95%;
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .main {
+    max-width: 95%;
+    padding: var(--spacing-sm);
+  }
+}

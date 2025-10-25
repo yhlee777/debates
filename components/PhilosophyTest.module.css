@@ -1,0 +1,249 @@
+/* /components/PhilosophyTest.module.css */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  background: var(--bg-main);
+}
+
+.progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-border);
+  z-index: 100;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-agree), var(--color-disagree));
+  transition: width 0.3s ease;
+}
+
+.questionContainer {
+  max-width: 680px;
+  width: 100%;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.questionHeader {
+  margin-bottom: var(--spacing-lg);
+}
+
+.questionNumber {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--bg-accent);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+.questionTitle {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.75rem;
+  color: var(--text-title);
+  margin: var(--spacing-sm) 0;
+}
+
+.questionDescription {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: var(--spacing-xl);
+  word-break: keep-all;
+}
+
+.sliderContainer {
+  margin: var(--spacing-xl) 0;
+}
+
+.labelContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+  gap: var(--spacing-md);
+}
+
+.leftLabel,
+.rightLabel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.leftLabel {
+  text-align: left;
+}
+
+.rightLabel {
+  text-align: right;
+}
+
+.leftLabel strong,
+.rightLabel strong {
+  color: var(--text-title);
+  font-weight: 600;
+}
+
+.leftLabel small,
+.rightLabel small {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.slider {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-agree), var(--color-disagree));
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 3px solid var(--color-agree);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 3px solid var(--color-agree);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s;
+}
+
+.sliderValue {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-agree);
+}
+
+.buttonContainer {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.prevButton,
+.nextButton {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: 48px;
+}
+
+.prevButton {
+  background: var(--bg-accent);
+  color: var(--text-body);
+  border: 1px solid var(--color-border);
+}
+
+.prevButton:hover:not(:disabled) {
+  background: var(--bg-hover);
+}
+
+.prevButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nextButton {
+  background: linear-gradient(135deg, var(--color-agree), #5A8AC0);
+  color: white;
+  border: none;
+}
+
+.nextButton:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.completedMessage {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.completedMessage h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 2rem;
+  color: var(--color-agree);
+  margin-bottom: var(--spacing-md);
+}
+
+.completedMessage p {
+  color: var(--text-body);
+  margin: var(--spacing-sm) 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-md);
+  }
+
+  .questionContainer {
+    padding: var(--spacing-lg);
+  }
+
+  .questionTitle {
+    font-size: 1.5rem;
+  }
+
+  .questionDescription {
+    font-size: 1rem;
+  }
+
+  .labelContainer {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .leftLabel,
+  .rightLabel {
+    text-align: center;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+  }
+}
